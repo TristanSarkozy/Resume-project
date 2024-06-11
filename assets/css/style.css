@@ -183,7 +183,7 @@ header {
 
 /* ----------------------------------------Hover.css */
 
-.hvr-sweep-to-bottom::before {
+.hvr-sweep-to-bottom:before {
     background-color: rgba(0, 0, 0, 0.2);
     height: 120px;
 }
@@ -237,7 +237,7 @@ footer .cv-pdf i:hover {
 }
 
 #footer-details {
-    padding: 20px;
+    margin: 20px;
 }
 
 /* -------------------------------------------Three Reasons */
