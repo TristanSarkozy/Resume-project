@@ -16,6 +16,17 @@ function userInformationHTML(user) {
         </div>`;
 }
 
+// Debounce function to limit the rate of API calls
+function debounce(func, delay) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
 // Add function to respond to a users input
 function fetchGitHubInformation(event) {
     var username = $("#gh-username").val();
@@ -49,5 +60,8 @@ function fetchGitHubInformation(event) {
             }
         });
 }
+
+// Add event listener for the input with debounce
+$("#gh-username").on("input", debounce(fetchGitHubInformation, 800));
 
 
