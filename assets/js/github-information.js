@@ -16,6 +16,29 @@ function userInformationHTML(user) {
         </div>`;
 }
 
+// Add repo function
+function repoInformationHTML(repos) {
+    if (repos.length == 0) {
+        return `<div class="clearfix repo-list">No repos!</div>`;
+    }
+
+    // Add variable to take us to the actual repo with target _blank to open in a new window
+    var listItemsHTML = repos.map(function(repo) {
+        return `<li>
+                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                </li>`;
+    });
+    // Add join methon to join all with a new line and stop iterating through the new array
+    return `<div class="clearfix repo-list">
+                <p>
+                    <strong>Repo List:</strong>
+                </p>
+                <ul>
+                    ${listItemsHTML.join("\n")}
+                </ul>
+            </div>`;
+}
+
 // Add debounce function to limit the rate of API calls
 function debounce(func, delay) {
     let timeout;
