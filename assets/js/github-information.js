@@ -36,7 +36,7 @@ function repoInformationHTML(repos) {
                 <ul>
                     ${listItemsHTML.join("\n")}
                 </ul>
-            </div>`;
+            </div>`
 }
 
 // Add debounce function to limit the rate of API calls
