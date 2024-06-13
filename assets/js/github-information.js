@@ -16,7 +16,7 @@ function userInformationHTML(user) {
         </div>`;
 }
 
-// Debounce function to limit the rate of API calls
+// Add debounce function to limit the rate of API calls
 function debounce(func, delay) {
     let timeout;
     return function() {
@@ -43,11 +43,16 @@ function fetchGitHubInformation(event) {
 
     // Add a promise to find a user and release an error message if not found
     $.when(
-        $.getJSON(`https://api.github.com/users/${username}`)
+        $.getJSON(`https://api.github.com/users/${username}`),
+        // Add another method call to list the repos for the individual user
+        $.getJSON(`https://api.github.com/users/${username}/repos`)
     ).then(
-        function(response) {
-            var userData = response;
+        // Add another response and variable and put the indexes for them
+        function(firstResponse, secondResponse) {
+            var userData = firstResponse[0];
+            var repoData = secondResponse[0];
             $("#gh-user-data").html(userInformationHTML(userData));
+            $("#gh-repo-data").html(repoInformationHTML(repoData));
         }, 
         function(errorResponse) {
             if (errorResponse.status === 404) {
