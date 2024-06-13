@@ -52,6 +52,10 @@ function debounce(func, delay) {
 
 // Add function to respond to a users input
 function fetchGitHubInformation(event) {
+    // Add code to clear whean there's an empty text box
+    $("#gh-user-data").html("");
+    $("#gh-repo-data").html("");
+
     var username = $("#gh-username").val();
     if (!username) {
         $("#gh-user-data").html(`<h2>Please enter a GitHub username</h2>`);
@@ -91,5 +95,9 @@ function fetchGitHubInformation(event) {
 
 // Add event listener for the input with debounce
 $("#gh-username").on("input", debounce(fetchGitHubInformation, 800));
+
+// Add code to display profile when the page is loaded
+$(document).ready(fetchGitHubInformation);
+
 
 
